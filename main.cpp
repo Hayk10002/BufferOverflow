@@ -9,11 +9,19 @@ int main(int argc, char* argv[]) {
     int arr_after[4];
 
     int* arr;
-    if ((void*)&x > (void*)&arr_before) arr = arr_before;
-    else                                arr = arr_after; 
+    if ((size_t)&x > (size_t)&arr_before) 
+    {
+        std::cout << &x << " > " << &arr_before << std::endl;
+        arr = arr_before;
+    }
+    else                                
+    {
+        std::cout << &x << " < " << &arr_before << std::endl;
+        arr = arr_after;
+    } 
     
-    std::cout << "&x    : " << &x << std::endl;
-    std::cout << "&arr  : " << &arr << std::endl;
+    std::cout << "&x     : " << &x << std::endl;
+    std::cout << "&arr   : " << &arr << std::endl;
     
     int i;
     for (i = 0; x == 4321; i++) 
