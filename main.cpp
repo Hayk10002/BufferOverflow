@@ -1,12 +1,15 @@
 #include <iostream>
 #include <string>
 
+
 int main(int argc, char* argv[]) {
 
 
-    int arr_before[4];
-    volatile int x = 4321;
-    int arr_after[4];
+    int __attribute__((no_reoder)) arr_before[4];
+    asm volatile("" ::: "memory");
+    int __attribute__((no_reoder)) x = 4321;
+    asm volatile("" ::: "memory");
+    int __attribute__((no_reoder)) arr_after[4];
 
     int* arr;
     if ((size_t)&x > (size_t)&arr_before) 
